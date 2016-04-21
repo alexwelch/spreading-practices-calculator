@@ -1,0 +1,32 @@
+form {
+  width: 370px;
+  float: left;
+}
+
+input[type='number'] {
+  width: 60px;
+}
+
+dt, dd { 
+  float: left;
+}
+dt {
+  clear: left;
+  width: 190px;
+}
+
+#notes {
+  float: right;
+  width: 500px;
+}
+
+table {
+  clear: both;
+}
+table th {
+  text-transform: capitalize;
+}
+table td {
+  border: #ccc 1px solid;
+  padding: 5px;
+}

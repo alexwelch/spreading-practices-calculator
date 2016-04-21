@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Enablement Calculator</title>
+    <script src="enablement_calculator.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" href="styles.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  </head>
+  <body>
+    <h2>Enablement Calculator</h2>
+
+    <ul id="notes">
+      <li>A healthy work pipeline helps enablement</li>
+      <li>The larger the initial enabler count the better</li>
+      <li>Focus on the quality of the enablement is key</li>
+      <li>The compounding nature of this scaling magnifies everything</li>
+    </ul>
+    <form action="#" method="get" name="calculateForm" accept-charset="utf-8">
+      <dl>
+        <dt><label for="success_rate">Success Rate:</label></dt>
+        <dd><input type="number" name="success_rate" id="success_rate" value=50 min=0 max=100 /> %</dd>
+
+        <dt><label for="ramp_time">Ramp Time:</label></dt>
+        <dd><input type="number" name="ramp_time" id="ramp_time" value=12 /> weeks</dd>
+
+        <dt><label for="enabled_people">Initial Enabled People:</label></dt>
+        <dd><input type="number" name="enabled_people" id="enabled_people" value=10 /></dd>
+
+        <dt><label for="desired_enabled_people">Desired Enabled People:</label></dt>
+        <dd><input type="number" name="desired_enabled_people" id="desired_enabled_people" value=100 /></dd>
+
+        <dt><input type="submit" value="Submit"></dt>
+      </dl>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th>iterations</th>
+          <th>lapsed time (weeks)</th>
+          <th>enabled people</th>
+          <th>failed enablements</th>
+        </tr>
+      </thead>
+      <tbody id="output"></tbody>
+    </table>
+  </body>
+</html>
