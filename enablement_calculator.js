@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var html = "";
     for (i = 0; i < iterations.length; i++) {
       var item = iterations[i];
-      html += "<tr><td>" + i + "</td><td>" + item.accumulatedTime + "</td><td>" + item.enabledPeople + "</td><td>" + item.failedEnablments + "</td></tr>";
+      html += "<tr><td>" + i + "</td><td>" + item.accumulatedTime + "</td><td>" + item.enabledPeople + "</td><td>" + item.failedEnablments + "</td><td>" + item.totalAttempts + "</td><td>" + item.percentSuccess + "%</td></tr>";
     }
     document.getElementById("output").innerHTML = html;
     return false;
@@ -19,11 +19,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
         failedEnablments = 0,
         totalTimeSpent = 0,
         iterations = [
-          {
-            accumulatedTime: totalTimeSpent,
-            enabledPeople: enabledPeople,
-            failedEnablments: failedEnablments
-          }
+          buildIteration(
+            totalTimeSpent,
+            enabledPeople,
+            failedEnablments
+          )
         ];
 
     while ( enabledPeople < desiredEnabledPeople ) {
@@ -31,15 +31,29 @@ document.addEventListener("DOMContentLoaded", function(event) {
       failedEnablments += enabledPeople * (1 - successRate)
       enabledPeople = enabledPeople * (1 + successRate)
 
-      iterations.push({
-        accumulatedTime: totalTimeSpent,
-        enabledPeople: enabledPeople,
-        failedEnablments: failedEnablments
-      });
+
+      iterations.push(
+        buildIteration(
+          totalTimeSpent,
+          enabledPeople,
+          failedEnablments
+        )
+      );
     }
 
     return iterations;
   }
 
+  function buildIteration(totalTimeSpent, enabledPeople, failedEnablments) {
+      var totalAttempts = enabledPeople + failedEnablments,
+          percentSuccess = (enabledPeople / totalAttempts * 100).toFixed(0);
 
+    return {
+      accumulatedTime: totalTimeSpent,
+      enabledPeople: enabledPeople.toFixed(0),
+      failedEnablments: failedEnablments.toFixed(0),
+      totalAttempts: totalAttempts.toFixed(0),
+      percentSuccess: percentSuccess
+    };
+  }
 });
